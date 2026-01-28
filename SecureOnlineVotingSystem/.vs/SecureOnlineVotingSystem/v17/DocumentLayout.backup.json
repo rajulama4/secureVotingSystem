@@ -1,0 +1,330 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Voting System\\SecureOnlineVotingSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\data\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\data\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\data\\voteledgerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\data\\voteledgerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\data\\voterelectionstatusrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\data\\voterelectionstatusrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\services\\votecryptoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\services\\votecryptoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\controllers\\votingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\controllers\\votingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\services\\cryptoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\services\\cryptoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\controllers\\electionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\controllers\\electionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\data\\electionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\data\\electionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\securevoting.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\securevoting.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\models\\voteledgerentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\models\\voteledgerentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\models\\election.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\models\\election.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\data\\mfarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\data\\mfarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|d:\\voting system\\secureonlinevotingsystem\\securevoting.api\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{805CE770-AC7B-4B76-B899-FB3C822561E5}|SecureVoting.API\\SecureVoting.API.csproj|solutionrelative:securevoting.api\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ElectionsController.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Controllers\\ElectionsController.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Controllers\\ElectionsController.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Controllers\\ElectionsController.cs",
+              "RelativeToolTip": "SecureVoting.API\\Controllers\\ElectionsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:48:44.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "SecureVoting.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-16T14:40:33.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\appsettings.json",
+              "RelativeDocumentMoniker": "SecureVoting.API\\appsettings.json",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\appsettings.json",
+              "RelativeToolTip": "SecureVoting.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-15T20:48:36.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DbHelper.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\DbHelper.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Data\\DbHelper.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\DbHelper.cs",
+              "RelativeToolTip": "SecureVoting.API\\Data\\DbHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:27:23.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VoteLedgerRepository.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\VoteLedgerRepository.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Data\\VoteLedgerRepository.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\VoteLedgerRepository.cs",
+              "RelativeToolTip": "SecureVoting.API\\Data\\VoteLedgerRepository.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAuwC8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T15:39:12.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VoterElectionStatusRepository.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\VoterElectionStatusRepository.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Data\\VoterElectionStatusRepository.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\VoterElectionStatusRepository.cs",
+              "RelativeToolTip": "SecureVoting.API\\Data\\VoterElectionStatusRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T15:42:43.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Models\\User.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Models\\User.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Models\\User.cs",
+              "RelativeToolTip": "SecureVoting.API\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:44:53.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VoteCryptoService.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Services\\VoteCryptoService.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Services\\VoteCryptoService.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Services\\VoteCryptoService.cs",
+              "RelativeToolTip": "SecureVoting.API\\Services\\VoteCryptoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T15:21:57.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "SecureVoting.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T21:15:29.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VotingController.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Controllers\\VotingController.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Controllers\\VotingController.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Controllers\\VotingController.cs",
+              "RelativeToolTip": "SecureVoting.API\\Controllers\\VotingController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowBgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T15:44:10.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Program.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Program.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Program.cs",
+              "RelativeToolTip": "SecureVoting.API\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:43:42.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Election.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Models\\Election.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Models\\Election.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Models\\Election.cs",
+              "RelativeToolTip": "SecureVoting.API\\Models\\Election.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:37:36.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Services\\AuthService.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Services\\AuthService.cs",
+              "RelativeToolTip": "SecureVoting.API\\Services\\AuthService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAlwEQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T21:04:35.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SecureVoting.API.csproj",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj",
+              "RelativeDocumentMoniker": "SecureVoting.API\\SecureVoting.API.csproj",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj",
+              "RelativeToolTip": "SecureVoting.API\\SecureVoting.API.csproj",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-16T14:40:37.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ElectionRepository.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\ElectionRepository.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Data\\ElectionRepository.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\ElectionRepository.cs",
+              "RelativeToolTip": "SecureVoting.API\\Data\\ElectionRepository.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAgwEQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:46:13.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CryptoService.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Services\\CryptoService.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Services\\CryptoService.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Services\\CryptoService.cs",
+              "RelativeToolTip": "SecureVoting.API\\Services\\CryptoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:56:28.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MfaRepository.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\MfaRepository.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Data\\MfaRepository.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\MfaRepository.cs",
+              "RelativeToolTip": "SecureVoting.API\\Data\\MfaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T21:03:36.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "VoteLedgerEntry.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Models\\VoteLedgerEntry.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Models\\VoteLedgerEntry.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Models\\VoteLedgerEntry.cs",
+              "RelativeToolTip": "SecureVoting.API\\Models\\VoteLedgerEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:33:08.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\UserRepository.cs",
+              "RelativeDocumentMoniker": "SecureVoting.API\\Data\\UserRepository.cs",
+              "ToolTip": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\Data\\UserRepository.cs",
+              "RelativeToolTip": "SecureVoting.API\\Data\\UserRepository.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAgwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:41:13.454Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+<div class="container">
+  <h2 class="page-title">Available Elections</h2>
+
+  <div *ngIf="success" class="top-message success-message">
+    {{ success }}
+  </div>
+
+  <div *ngIf="error" class="top-message error-message">
+    {{ error }}
+  </div>
+
+  <mat-card class="section">
+  <div class="section-title">
+    <mat-icon>ballot</mat-icon>
+    <span>Select Election</span>
+  </div>
+
+  <div class="debug-box">
+    loadingElections: {{ loadingElections }} |
+    elections count: {{ elections.length }}
+  </div>
+
+  <div *ngIf="loadingElections" class="loading-wrap">
+    <mat-spinner diameter="36"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loadingElections && elections.length === 0" class="empty-state">
+    No available elections found.
+  </div>
+
+  <table class="election-table" *ngIf="!loadingElections && elections.length > 0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of elections">
+        <td>{{ e.title }}</td>
+        <td>{{ e.description || '-' }}</td>
+        <td>{{ e.startTime | date:'medium' }}</td>
+        <td>{{ e.endTime | date:'medium' }}</td>
+        <td>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="selectElection(e)"
+            [disabled]="!!e.hasVoted">
+            {{ e.hasVoted ? 'Already Voted' : 'Select' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>
+
+  <mat-card class="section" *ngIf="selectedElection && !selectedElection.hasVoted">
+    <div class="section-title">
+      <mat-icon>how_to_vote</mat-icon>
+      <span>Choose Candidate</span>
+    </div>
+
+    <p><strong>Election:</strong> {{ selectedElection.title }}</p>
+
+    <div *ngIf="loadingCandidates" class="loading-wrap">
+      <mat-spinner diameter="30"></mat-spinner>
+    </div>
+
+    <div *ngIf="!loadingCandidates && candidates.length === 0" class="empty-state">
+      No candidates found for this election.
+    </div>
+
+    <div *ngIf="!loadingCandidates && candidates.length > 0" class="candidate-list">
+      <label class="candidate-item" *ngFor="let c of candidates">
+        <input
+          type="radio"
+          name="candidate"
+          [value]="c.candidateId"
+          [(ngModel)]="selectedCandidateId" />
+        <span>
+          <strong>{{ c.candidateName }}</strong>
+          <span *ngIf="c.party"> - {{ c.party }}</span>
+        </span>
+      </label>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width"
+      (click)="castVote()"
+      [disabled]="castingVote || !selectedCandidateId">
+      <span *ngIf="!castingVote">Confirm Vote</span>
+      <span *ngIf="castingVote">Casting Vote...</span>
+    </button>
+  </mat-card>
+</div>

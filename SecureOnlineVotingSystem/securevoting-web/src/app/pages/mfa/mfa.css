@@ -1,0 +1,79 @@
+/* Full page background */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Card container */
+.mfa-card {
+  background: white;
+  padding: 40px;
+  width: 360px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Title */
+.mfa-card h2 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #2a5298;
+}
+
+/* Subtitle */
+.mfa-card p {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* OTP input */
+.otp-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 6px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.otp-input:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
+}
+
+/* Verify button */
+.verify-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #2a5298;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.verify-btn:hover {
+  background: #1e3c72;
+}
+
+/* Dev code badge */
+.dev-code {
+  margin-top: 15px;
+  background: #f5f7ff;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #444;
+}

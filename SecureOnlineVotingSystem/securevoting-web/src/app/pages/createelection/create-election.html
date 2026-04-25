@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="top-bar">
+    <h2 class="page-title">Create Election</h2>
+    <button mat-stroked-button routerLink="/admin">Back to Dashboard</button>
+  </div>
+
+  <mat-card class="section">
+    <div class="section-title">
+      <mat-icon>add_circle</mat-icon>
+      <span>Create Election</span>
+    </div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>Title</label>
+        <input
+          matInput
+          [(ngModel)]="title"
+          placeholder="Election title"
+          class="full-input"
+        />
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <input
+          matInput
+          [(ngModel)]="description"
+          placeholder="Election description"
+          class="full-input"
+        />
+      </div>
+
+      <div class="field">
+        <label>Start Time</label>
+        <input
+          type="datetime-local"
+          [(ngModel)]="startTime"
+          class="full-input"
+        />
+      </div>
+
+      <div class="field">
+        <label>End Time</label>
+        <input
+          type="datetime-local"
+          [(ngModel)]="endTime"
+          class="full-input"
+        />
+      </div>
+
+            <div class="field">
+        <label>Jurisdiction *</label>
+
+        <select [(ngModel)]="jurisdictionId" class="full-input">
+          <option [ngValue]="null">-- Select jurisdiction --</option>
+
+          <option *ngFor="let j of jurisdictions" [ngValue]="j.jurisdictionId">
+            {{ j.name }} ({{ j.city }}, {{ j.county }})
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="createElection()" [disabled]="saving">
+      <span *ngIf="!saving">Create Election</span>
+      <span *ngIf="saving">Creating...</span>
+    </button>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  </mat-card>
+</div>

@@ -9,18 +9,18 @@ namespace SecureVoting.API.Services
 {
     public class AuthService
     {
-
         private readonly UserRepository _users;
         private readonly MfaRepository _mfa;
         private readonly CryptoService _crypto;
         private readonly IConfiguration _config;
-
-        public AuthService(UserRepository users, MfaRepository mfa, CryptoService crypto, IConfiguration config)
+        private readonly IFileStorageService _fileStorage;
+        public AuthService(UserRepository users, MfaRepository mfa, CryptoService crypto, IConfiguration config, IFileStorageService fileStorage)
         {
             _users = users;
             _mfa = mfa;
             _crypto = crypto;
             _config = config;
+            _fileStorage = fileStorage;
         }
 
         public (bool ok, string message) Register(string fullName, string email, string password, string role)
@@ -52,7 +52,7 @@ namespace SecureVoting.API.Services
             var expiresAt = DateTime.UtcNow.AddMinutes(5);
             int challengeId = _mfa.CreateChallenge(user.UserId, codeHash, expiresAt);
 
-            // SIMULATION ONLY: we return the code so you can demo without SMS/email.
+            // SIMULATION ONLY
             return (true, "MFA required.", challengeId, code, user);
         }
 
@@ -65,14 +65,11 @@ namespace SecureVoting.API.Services
 
             if (!valid) return (false, "Invalid or expired MFA code.", null);
 
-            // Issue JWT
             return (true, "Login successful.", GenerateJwt(userId));
         }
 
         public string GenerateJwt(int userId)
         {
-            // minimal: read user again for role/email claims
-            // (you could also pass User object in if you prefer)
             var user = GetUserByIdOrThrow(userId);
 
             var jwt = _config.GetSection("Jwt");
@@ -100,11 +97,130 @@ namespace SecureVoting.API.Services
 
         private User GetUserByIdOrThrow(int userId)
         {
-            // small helper: easiest approach is to add GetById in UserRepository.
-            // For now, reuse GetByEmail isn’t possible; so add GetById quickly:
-            // Implement in repository if you want, but here's a quick inline approach:
             var user = _users.GetById(userId);
             return user ?? throw new InvalidOperationException("User not found.");
+        }
+
+        public async Task<RegisterVoterResult> RegisterVoterAsync(RegisterVoterRequest req)
+        {
+            if (req == null)
+            {
+                return new RegisterVoterResult
+                {
+                    Success = false,
+                    Message = "Request is required."
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(req.FullName) ||
+                string.IsNullOrWhiteSpace(req.Email) ||
+                string.IsNullOrWhiteSpace(req.PhoneNumber) ||
+                string.IsNullOrWhiteSpace(req.AddressLine1) ||
+                string.IsNullOrWhiteSpace(req.City) ||
+                string.IsNullOrWhiteSpace(req.StateCode) ||
+                string.IsNullOrWhiteSpace(req.ZipCode) ||
+                string.IsNullOrWhiteSpace(req.DOB) ||
+                string.IsNullOrWhiteSpace(req.IdDocumentType) ||
+                string.IsNullOrWhiteSpace(req.IdDocumentNumber))
+            {
+                return new RegisterVoterResult
+                {
+                    Success = false,
+                    Message = "Required registration fields are missing."
+                };
+            }
+
+            if (req.IdPicture == null)
+            {
+                return new RegisterVoterResult
+                {
+                    Success = false,
+                    Message = "ID picture is required."
+                };
+            }
+
+            var fileResult = await _fileStorage.SaveIdPictureAsync(req.IdPicture);
+            if (!fileResult.ok)
+            {
+                return new RegisterVoterResult
+                {
+                    Success = false,
+                    Message = fileResult.message
+                };
+            }
+
+            string loginUserId = "VOT-" + Guid.NewGuid().ToString("N")[..8].ToUpper();
+            string tempPassword = GenerateTemporaryPassword();
+
+            var (hash, salt) = _crypto.HashPassword(tempPassword);
+
+            return _users.RegisterVoter(
+                req,
+                hash,
+                salt,
+                loginUserId,
+                tempPassword,
+                fileResult.fileName!,
+                fileResult.relativePath!);
+        }
+
+        public (bool ok, string message, User? user) LoginPasswordOnly(string loginId, string password)
+        {
+            var user = _users.GetByEmailOrLoginId(loginId);
+            if (user == null) return (false, "Invalid credentials.", null);
+
+            if (!_crypto.VerifyPassword(password, user.PasswordHash, user.PasswordSalt))
+                return (false, "Invalid credentials.", null);
+
+            return (true, "Password verified.", user);
+        }
+
+        public (bool enabled, string? secret, string? issuer)? GetTotpInfoByLoginId(string loginId)
+        {
+            var user = _users.GetByEmailOrLoginId(loginId);
+            if (user == null) return null;
+
+            return _users.GetTotpInfoByEmail(user.Email);
+        }
+
+        public (bool enabled, string? secret, string? issuer)? GetTotpInfoByEmail(string email)
+            => _users.GetTotpInfoByEmail(email);
+
+        public void EnableTotpForUser(string email, string secretBase32, string issuer)
+        {
+            _users.EnableTotpForUser(email, secretBase32, issuer);
+        }
+
+        public User? GetUserByEmail(string email)
+            => _users.GetByEmail(email);
+
+        private static string GenerateTemporaryPassword()
+        {
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789@#";
+            var random = new Random();
+
+            return new string(Enumerable.Repeat(chars, 10)
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
+        }
+
+
+        public (bool ok, string message) ChangeTemporaryPassword(int userId, string newPassword)
+        {
+            if (string.IsNullOrWhiteSpace(newPassword))
+                return (false, "New password is required.");
+
+            if (newPassword.Length < 8)
+                return (false, "Password must be at least 8 characters long.");
+
+            var user = _users.GetById(userId);
+            if (user == null)
+                return (false, "User not found.");
+
+            var (hash, salt) = _crypto.HashPassword(newPassword);
+            _users.UpdatePasswordAndClearMustChange(userId, hash, salt);
+
+            return (true, "Password changed successfully.");
         }
     }
 }

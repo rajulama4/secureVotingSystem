@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="top-bar">
+    <h2 class="page-title">Vote Count Status</h2>
+    <button mat-stroked-button routerLink="/admin">Back to Dashboard</button>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <mat-card class="section">
+    <div class="section-title">
+      <mat-icon>bar_chart</mat-icon>
+      <span>Election Count Overview</span>
+    </div>
+
+    <div *ngIf="loading" class="loading-wrap">
+      Loading vote count status...
+    </div>
+
+    <div *ngIf="!loading && rows.length === 0" class="empty-state">
+      No elections found.
+    </div>
+
+    <table class="status-table" *ngIf="!loading && rows.length > 0">
+      <thead>
+        <tr>
+          <th>Election</th>
+          <th>Jurisdiction</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Total Votes</th>
+          <th>Status</th>
+          <th>Published</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let row of rows"
+          class="clickable-row"
+          (click)="openElectionDetails(row)">
+          <td>{{ row.title }}</td>
+          <td>{{ row.jurisdictionName || '-' }}</td>
+          <td>{{ row.startTime | date:'medium' }}</td>
+          <td>{{ row.endTime | date:'medium' }}</td>
+          <td>{{ row.totalVotes }}</td>
+          <td>
+            <span class="badge" [ngClass]="getStatusClass(row.countStatus)">
+              {{ row.countStatus }}
+            </span>
+          </td>
+          <td>{{ row.isPublished ? 'Yes' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+
+  <mat-card class="section" *ngIf="selectedElection">
+    <div class="section-title">
+      <mat-icon>poll</mat-icon>
+      <span>Election Details: {{ selectedElection.title }}</span>
+    </div>
+
+    <div class="details-top">
+      <div><strong>Jurisdiction:</strong> {{ selectedElection.jurisdictionName || '-' }}</div>
+      <div><strong>Total Votes:</strong> {{ selectedElection.totalVotes }}</div>
+      <div>
+        <strong>Status:</strong>
+        <span class="badge" [ngClass]="getStatusClass(selectedElection.countStatus)">
+          {{ selectedElection.countStatus }}
+        </span>
+      </div>
+      <button mat-stroked-button (click)="closeDetails()">Close</button>
+    </div>
+
+    <div *ngIf="loadingDetails" class="loading-wrap">
+      Loading election details...
+    </div>
+
+    <div *ngIf="detailsError" class="error">
+      {{ detailsError }}
+    </div>
+
+    <div *ngIf="!loadingDetails && resultRows.length === 0" class="empty-state">
+      No candidate result data found.
+    </div>
+
+    <table class="status-table" *ngIf="!loadingDetails && resultRows.length > 0">
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Party</th>
+          <th>Votes</th>
+          <th *ngIf="selectedElection.isPublished">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of resultRows">
+          <td>{{ row.candidateName }}</td>
+          <td>{{ row.party || '-' }}</td>
+          <td>{{ row.voteCount }}</td>
+          <td *ngIf="selectedElection.isPublished">
+            <span class="result-pill" [ngClass]="row.isWinner ? 'winner' : 'loser'">
+              {{ getResultLabel(row) }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</div>

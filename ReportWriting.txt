@@ -1,0 +1,9 @@
+Report writing
+
+🚀 Academic Advantage
+
+In your Requirements Engineering report, you can now say:
+
+"A centralized audit logging middleware was implemented to ensure traceability, accountability, and security monitoring of all system interactions."
+
+That sounds very professional.

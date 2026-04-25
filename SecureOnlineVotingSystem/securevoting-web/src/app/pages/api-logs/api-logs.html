@@ -1,0 +1,131 @@
+<mat-card class="wrap">
+  <div class="header">
+    <div class="title">API Logs</div>
+
+    <div class="filters">
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" placeholder="admin@test.com" (keyup.enter)="skip=0; load()" />
+        <button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Endpoint</mat-label>
+        <input matInput [(ngModel)]="endpoint" placeholder="/api/auth/verify-totp" (keyup.enter)="skip=0; load()" />
+        <button *ngIf="endpoint" matSuffix mat-icon-button aria-label="Clear" (click)="endpoint=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>UserId</mat-label>
+        <input matInput [(ngModel)]="userIdText" placeholder="2" (keyup.enter)="skip=0; load()" />
+        <button *ngIf="userIdText" matSuffix mat-icon-button aria-label="Clear" (click)="userIdText=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="skip=0; load()" [disabled]="loading">
+        <mat-icon>search</mat-icon> Search
+      </button>
+
+      <button mat-button (click)="resetFilters()" [disabled]="loading">Reset</button>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="err">{{ error }}</div>
+
+  <div *ngIf="loading" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Results info -->
+  <div class="results-info" *ngIf="!loading && rows.length > 0">
+    {{ getPageInfo() }}
+  </div>
+
+  <table mat-table [dataSource]="rows" class="mat-elevation-z1" *ngIf="!loading">
+
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef>Time (UTC)</th>
+      <td mat-cell *matCellDef="let r">{{ r.requestTimeUtc | date:'medium' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="method">
+      <th mat-header-cell *matHeaderCellDef>Method</th>
+      <td mat-cell *matCellDef="let r">
+        <span class="method-pill" [class.method-get]="r.httpMethod === 'GET'"
+                                 [class.method-post]="r.httpMethod === 'POST'"
+                                 [class.method-put]="r.httpMethod === 'PUT'"
+                                 [class.method-delete]="r.httpMethod === 'DELETE'">
+          {{ r.httpMethod }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endpoint">
+      <th mat-header-cell *matHeaderCellDef>Endpoint</th>
+      <td mat-cell *matCellDef="let r">{{ r.endpoint }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let r">{{ r.email || '-' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef>UserId</th>
+      <td mat-cell *matCellDef="let r">{{ r.userId ?? '-' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let r">
+        <span class="status-pill" [class.status-success]="r.isSuccess" 
+                                 [class.status-error]="!r.isSuccess">
+          {{ r.statusCode }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef>ms</th>
+      <td mat-cell *matCellDef="let r">{{ r.durationMs ?? '-' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let r">
+        <button mat-stroked-button color="primary" (click)="openDetail(r)">
+          <mat-icon>visibility</mat-icon> View
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- No data row -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+        <div class="no-data">
+          <mat-icon>info</mat-icon>
+          <span>No logs found matching your criteria</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Material Paginator -->
+  <mat-paginator
+    [length]="totalCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="currentPage"
+    (page)="onPageChange($event)"
+    showFirstLastButtons
+    aria-label="Select page">
+  </mat-paginator>
+</mat-card>

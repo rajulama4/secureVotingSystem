@@ -1,0 +1,59 @@
+<div class="page">
+  <div class="card">
+    <h2 class="title">Two-Factor Authentication</h2>
+
+    <p class="subtitle" *ngIf="isEnrollMode; else verifyOnly">
+      {{ enrollMessage }}
+    </p>
+
+    <ng-template #verifyOnly>
+      <p class="subtitle">
+        Enter the 6-digit code from your authenticator app.
+      </p>
+    </ng-template>
+
+    <!-- QR shown only during enrollment -->
+    <div class="qrWrap" *ngIf="qrBase64">
+      <img
+        class="qr"
+        [src]="'data:image/png;base64,' + qrBase64"
+        alt="TOTP QR Code"
+      />
+      <div class="hint" *ngIf="otpauthUri">
+        If scan fails, try a different authenticator app or enlarge the QR.
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Email</label>
+      <input class="input" [value]="email" readonly />
+    </div>
+
+    <div class="field">
+      <label class="label">6-digit code</label>
+      <input
+        class="input code"
+        [(ngModel)]="code"
+        maxlength="6"
+        inputmode="numeric"
+        placeholder="123456"
+      />
+    </div>
+
+    <button class="btn" (click)="verify()" [disabled]="loading">
+      <span *ngIf="!loading">Verify & Continue</span>
+      <span *ngIf="loading">Verifying…</span>
+    </button>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <div class="footer">
+      <button
+        class="link"
+        type="button"
+        routerLink="/login">
+        Back to Login
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<mat-sidenav-container class="wrap">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <div class="brand">
+      <div class="logo">SV</div>
+      <div>
+        <div class="title">Secure Voting</div>
+        <div class="sub">Web Portal</div>
+      </div>
+    </div>
+
+    <mat-nav-list>
+      <!-- Admin-only -->
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin" routerLinkActive="active">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span>Admin Dashboard</span>
+      </a>
+
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/api-logs" routerLinkActive="active">
+        <mat-icon>receipt_long</mat-icon>
+        <span>API Logs</span>
+      </a>
+
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/verification" routerLinkActive="active">
+        <mat-icon>verified_user</mat-icon>
+        <span>Voter Verification</span>
+      </a>
+
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/manage-candidates" routerLinkActive="active">
+        <mat-icon>groups</mat-icon>
+        <span>Manage Candidates</span>
+      </a>
+
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/vote-count-status" routerLinkActive="active">
+        <mat-icon>bar_chart</mat-icon>
+        <span>Vote Count Status</span>
+      </a>
+
+      <!-- Voter-only -->
+      <a *ngIf="isVoter" mat-list-item routerLink="/voter" routerLinkActive="active">
+        <mat-icon>how_to_vote</mat-icon>
+        <span>Voter Dashboard</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="topbar">
+      <span>Secure Online Voting System</span>
+      <span class="spacer"></span>
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

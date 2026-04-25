@@ -1,0 +1,47 @@
+<mat-card class="login-card">
+
+  <h2>Login</h2>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email or User ID</mat-label>
+    <input
+      matInput
+      [(ngModel)]="loginId"
+      required
+      autocomplete="username" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      [(ngModel)]="password"
+      required
+      autocomplete="current-password" />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="full-width"
+    (click)="submit()"
+    [disabled]="loading">
+    <span *ngIf="!loading">Login</span>
+    <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+  </button>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    class="full-width signup-btn"
+    routerLink="/signup"
+    [disabled]="loading">
+    Sign Up as Voter
+  </button>
+
+  <div class="error" *ngIf="error">
+    {{ error }}
+  </div>
+
+</mat-card>

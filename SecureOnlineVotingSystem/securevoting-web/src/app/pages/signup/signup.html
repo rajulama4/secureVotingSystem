@@ -1,0 +1,109 @@
+<mat-card class="signup-card">
+  <h2>Voter Registration</h2>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="success" class="success">{{ success }}</div>
+
+  <div *ngIf="!registered">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Full Name</mat-label>
+      <input matInput [(ngModel)]="form.fullName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="form.email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput [(ngModel)]="form.phoneNumber" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date of Birth</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dobPicker"
+        [(ngModel)]="form.dateOfBirth"
+        name="dateOfBirth"
+        readonly
+        (click)="dobPicker.open()" />
+
+      <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dobPicker></mat-datepicker>
+</mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput [(ngModel)]="form.addressLine1" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>City</mat-label>
+      <input matInput [(ngModel)]="form.city" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>State</mat-label>
+      <input matInput [(ngModel)]="form.stateCode" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Zip</mat-label>
+      <input matInput [(ngModel)]="form.zipCode" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>ID Type</mat-label>
+      <mat-select [(ngModel)]="form.idDocumentType">
+        <mat-option *ngFor="let t of idTypes" [value]="t">{{ t }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>ID Number</mat-label>
+      <input matInput [(ngModel)]="form.idDocumentNumber" />
+    </mat-form-field>
+
+
+          <div class="full-width file-upload">
+          <label>ID Picture *</label>
+
+          <input
+            type="file"
+            accept=".jpg,.jpeg,.png,.webp"
+            (change)="onFileSelected($event)" />
+
+          <div *ngIf="selectedFile" class="file-name">
+            Selected: {{ selectedFile.name }}
+          </div>
+
+          <div *ngIf="fileError" class="error">
+            {{ fileError }}
+          </div>
+        </div>
+
+    
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width"
+      (click)="register()"
+      [disabled]="loading">
+      <span *ngIf="!loading">Register</span>
+      <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+    </button>
+  </div>
+
+  <div *ngIf="registered && generated" class="success-box">
+    <h3>Registration Successful</h3>
+    <p><strong>User ID:</strong> {{ generated.userId }}</p>
+    <p><strong>Temporary Password:</strong> {{ generated.password }}</p>
+
+    <button mat-raised-button color="primary" routerLink="/login">
+      Go to Login
+    </button>
+  </div>
+</mat-card>

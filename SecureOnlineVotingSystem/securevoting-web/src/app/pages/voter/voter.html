@@ -1,0 +1,93 @@
+<div class="container">
+  <h2 class="page-title">Voter Dashboard</h2>
+
+  <div *ngIf="success" class="top-message success-message">
+    {{ success }}
+  </div>
+
+  <div *ngIf="error" class="top-message error-message">
+    {{ error }}
+  </div>
+
+  <mat-card class="section profile-card">
+    <div class="section-title">
+      <mat-icon>person</mat-icon>
+      <span>Voter Profile</span>
+    </div>
+
+    <ng-container *ngIf="!verificationLoading">
+  <div class="profile-grid">
+    <div class="profile-item">
+      <div class="label">Full Name</div>
+      <div class="value">{{ legalFullName || 'N/A' }}</div>
+    </div>
+
+    <div class="profile-item">
+      <div class="label">City</div>
+      <div class="value">{{ city || 'N/A' }}</div>
+    </div>
+
+    <div class="profile-item">
+      <div class="label">Address</div>
+      <div class="value">{{ getFormattedAddress() || 'N/A' }}</div>
+    </div>
+
+    <div class="profile-item">
+      <div class="label">ID Type</div>
+      <div class="value">{{ idDocumentType || 'N/A' }}</div>
+    </div>
+
+    <div class="profile-item">
+      <div class="label">Age</div>
+      <div class="value">{{ age ?? 'N/A' }}</div>
+    </div>
+
+    <div class="profile-item">
+      <div class="label">Verification Status</div>
+      <div class="value">
+        <span class="status-pill" [ngClass]="getStatusClass()">
+          {{ verificationStatus }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="id-picture-wrap" *ngIf="idPicturePath">
+    <div class="label">Uploaded ID Picture</div>
+
+    <img
+      [src]="getFullImageUrl()"
+      alt="Uploaded ID Picture"
+      class="id-picture-preview" />
+
+    <div class="image-link-row">
+      <a [href]="getFullImageUrl()" target="_blank">View Full Image</a>
+    </div>
+  </div>
+
+  <div *ngIf="canAccessVoting()" class="access-box approved-box">
+    Your account is approved. You can now proceed to elections.
+  </div>
+
+  <div *ngIf="!canAccessVoting()" class="access-box pending-box">
+    Your account is not approved yet. Please wait for admin approval before voting.
+  </div>
+
+  <div class="action-row" *ngIf="canAccessVoting()">
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/voter/elections">
+      Proceed to Elections
+    </button>
+  </div>
+
+  <div class="action-row" *ngIf="!canAccessVoting()">
+    <button
+      mat-raised-button
+      color="warn"
+      disabled>
+      Approval Required
+    </button>
+  </div>
+</ng-container>

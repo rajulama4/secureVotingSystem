@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="top-bar">
+    <h2 class="page-title">Manage Elections</h2>
+    <button mat-stroked-button routerLink="/admin">Back to Dashboard</button>
+  </div>
+
+  <mat-card class="section">
+    <div class="section-title">
+      <mat-icon>event_note</mat-icon>
+      <span>Manage Elections</span>
+    </div>
+
+    <div *ngIf="success" class="success">{{ success }}</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="loading" class="loading">Loading elections...</div>
+
+    <div *ngIf="!loading && allElections.length === 0 && !error" class="loading">
+      No elections found.
+    </div>
+
+    <div *ngIf="!loading && allElections.length > 0" class="table-wrap">
+      <!-- Results count -->
+      <div class="results-info" *ngIf="!loading">
+        {{ getShowingRange() }}
+      </div>
+
+      <table class="election-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Closed</th>
+            <th>Published</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of paginatedElections">
+            <td>{{ row.title }}</td>
+            <td>{{ row.description || '-' }}</td>
+            <td>{{ row.startTime | date:'medium' }}</td>
+            <td>{{ row.endTime | date:'medium' }}</td>
+            <td>
+              <span class="badge" [class.badge-gray]="!row.isClosed" [class.badge-red]="row.isClosed">
+                {{ row.isClosed ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td>
+              <span class="badge" [class.badge-gray]="!row.isPublished" [class.badge-green]="row.isPublished">
+                {{ row.isPublished ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td class="actions">
+              <button
+                mat-stroked-button
+                color="warn"
+                (click)="closeElection(row)"
+                [disabled]="row.isClosed">
+                Close
+              </button>
+
+              <button
+                mat-stroked-button
+                color="primary"
+                (click)="publishResults(row)"
+                [disabled]="!row.isClosed || row.isPublished">
+                Publish Results
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Material Paginator -->
+      <mat-paginator
+        [length]="totalElections"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 25, 50]"
+        [pageIndex]="currentPage"
+        (page)="onPageChange($event)"
+        showFirstLastButtons
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </mat-card>
+</div>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj": {}
+    "D:\\Voting System\\GIT\\secureVotingSystem\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj": {}
   },
   "projects": {
-    "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj": {
+    "D:\\Voting System\\GIT\\secureVotingSystem\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj",
+        "projectUniqueName": "D:\\Voting System\\GIT\\secureVotingSystem\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj",
         "projectName": "SecureVoting.API",
-        "projectPath": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj",
+        "projectPath": "D:\\Voting System\\GIT\\secureVotingSystem\\SecureOnlineVotingSystem\\SecureVoting.API\\SecureVoting.API.csproj",
         "packagesPath": "C:\\Users\\rajul\\.nuget\\packages\\",
-        "outputPath": "D:\\Voting System\\SecureOnlineVotingSystem\\SecureVoting.API\\obj\\",
+        "outputPath": "D:\\Voting System\\GIT\\secureVotingSystem\\SecureOnlineVotingSystem\\SecureVoting.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -53,6 +53,18 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.14, )"
+            },
+            "Otp.NET": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.5, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

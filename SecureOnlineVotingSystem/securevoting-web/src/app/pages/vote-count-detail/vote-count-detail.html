@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="top-bar">
+    <h2 class="page-title">Election Result Details</h2>
+    <button mat-stroked-button routerLink="/admin/vote-count-status">Back to Status</button>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <mat-card class="section" *ngIf="election">
+    <div class="section-title">
+      <mat-icon>poll</mat-icon>
+      <span>{{ election.title }}</span>
+    </div>
+
+    <div class="summary-grid">
+      <div><strong>Jurisdiction:</strong> {{ election.jurisdictionName || '-' }}</div>
+      <div><strong>Total Votes:</strong> {{ election.totalVotes }}</div>
+      <div><strong>Start:</strong> {{ election.startTime | date:'medium' }}</div>
+      <div><strong>End:</strong> {{ election.endTime | date:'medium' }}</div>
+      <div>
+        <strong>Status:</strong>
+        <span class="badge" [ngClass]="getStatusClass(election.countStatus)">
+          {{ election.countStatus }}
+        </span>
+      </div>
+      <div><strong>Published:</strong> {{ election.isPublished ? 'Yes' : 'No' }}</div>
+    </div>
+  </mat-card>
+
+  <mat-card class="section winner-card" *ngIf="election?.isPublished && getWinner() as winner">
+    <div class="winner-wrap">
+      <img
+        *ngIf="winner.candidateImagePath"
+        [src]="getImageUrl(winner.candidateImagePath)"
+        alt="Winner image"
+        class="winner-image" />
+
+      <div *ngIf="!winner.candidateImagePath" class="winner-avatar">
+        {{ winner.candidateName.charAt(0) }}
+      </div>
+
+      <div class="winner-text">
+        <div class="winner-label">Winner</div>
+        <div class="winner-name">{{ winner.candidateName }}</div>
+        <div class="winner-meta">
+          {{ winner.party || '-' }} • {{ winner.voteCount }} votes • {{ getVotePercent(winner.voteCount) }}%
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="section" *ngIf="election">
+    <div class="section-title">
+      <mat-icon>leaderboard</mat-icon>
+      <span>Candidate Results</span>
+    </div>
+
+    <div *ngIf="loading" class="loading-wrap">
+      Loading details...
+    </div>
+
+    <div *ngIf="!loading && resultRows.length === 0" class="empty-state">
+      No candidate result data found.
+    </div>
+
+    <div class="candidate-result-list" *ngIf="!loading && resultRows.length > 0">
+      <div class="candidate-result-card" *ngFor="let row of resultRows">
+        <div class="candidate-left">
+          <img
+            *ngIf="row.candidateImagePath"
+            [src]="getImageUrl(row.candidateImagePath)"
+            alt="Candidate image"
+            class="candidate-image" />
+
+          <div *ngIf="!row.candidateImagePath" class="candidate-avatar">
+            {{ row.candidateName.charAt(0) }}
+          </div>
+
+          <div>
+            <div class="candidate-name">{{ row.candidateName }}</div>
+            <div class="candidate-party">{{ row.party || '-' }}</div>
+          </div>
+        </div>
+
+        <div class="candidate-right">
+          <div class="vote-meta">
+            <span>{{ row.voteCount }} votes</span>
+            <span>{{ getVotePercent(row.voteCount) }}%</span>
+            <span *ngIf="election.isPublished"
+              class="result-pill"
+              [ngClass]="row.isWinner ? 'winner' : 'loser'">
+              {{ getResultLabel(row) }}
+            </span>
+          </div>
+
+          <div class="bar-track">
+            <div
+              class="bar-fill"
+              [ngClass]="row.isWinner ? 'winner-bar' : 'normal-bar'"
+              [style.width.%]="getBarWidth(row.voteCount)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

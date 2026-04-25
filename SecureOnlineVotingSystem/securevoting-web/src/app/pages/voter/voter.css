@@ -1,0 +1,160 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  margin-bottom: 18px;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.top-message {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.success-message {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #c8e6c9;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #b71c1c;
+  border: 1px solid #ffcdd2;
+}
+
+.loading-box {
+  background: #eef3f8;
+  color: #37474f;
+  border: 1px solid #d6e2ee;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.profile-item {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-approved {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.status-pending {
+  background: #fff8e1;
+  color: #8d6e00;
+}
+
+.status-rejected {
+  background: #ffebee;
+  color: #b71c1c;
+}
+
+.status-default {
+  background: #eceff1;
+  color: #37474f;
+}
+
+.access-box {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.approved-box {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #c8e6c9;
+}
+
+.pending-box {
+  background: #fff5f5;
+  color: #b71c1c;
+  border: 1px solid #ffcdd2;
+}
+
+.action-row {
+  margin-top: 16px;
+}
+
+
+.id-picture-wrap {
+  margin-bottom: 18px;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.id-picture-preview {
+  display: block;
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #d6d6d6;
+}
+
+.image-link-row {
+  margin-top: 10px;
+}
+
+.image-link-row a {
+  color: #1565c0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.image-link-row a:hover {
+  text-decoration: underline;
+}

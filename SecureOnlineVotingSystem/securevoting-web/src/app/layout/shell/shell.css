@@ -1,0 +1,24 @@
+.wrap { height: 100vh; background: #f5f7fb; }
+.sidenav { width: 250px; padding: 12px; }
+.topbar { position: sticky; top: 0; z-index: 10; }
+.spacer { flex: 1; }
+.content { padding: 20px; max-width: 1200px; margin: 0 auto; }
+
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding: 10px 8px 14px;
+}
+.logo{
+  width:42px;height:42px;
+  border-radius:12px;
+  display:grid;place-items:center;
+  font-weight:800;
+  background:#1f2a44;color:white;
+}
+.title{ font-weight:800; }
+.sub{ opacity:.7; font-size:12px; }
+
+.active{ background: rgba(63,81,181,0.10); border-radius: 10px; }
+mat-icon{ margin-right: 10px; }

@@ -1,0 +1,192 @@
+.wrap { padding: 16px; }
+.header { display:flex; flex-direction:column; gap:12px; }
+.title { font-size: 20px; font-weight: 700; }
+
+.filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+
+.field { width: 260px; }
+
+.err { color: crimson; margin: 10px 0; }
+
+.loading { display:flex; justify-content:center; padding: 24px; }
+
+.pill {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+}
+
+.ok { color: #0a7a2f; font-weight: 700; }
+.bad { color: #c62828; font-weight: 700; }
+
+.pager {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top: 12px;
+}
+
+
+/* Add to your api-logs.css */
+.wrap {
+  padding: 24px;
+  margin: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.field {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.err {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.results-info {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  margin: 16px 0;
+}
+
+/* Method pills */
+.method-pill {
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.method-get {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.method-post {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.method-put {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+
+.method-delete {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+/* Status pills */
+.status-pill {
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-success {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-error {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+/* No data row */
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  gap: 8px;
+  color: #999;
+  font-size: 16px;
+}
+
+/* Actions column */
+.mat-column-actions {
+  width: 100px;
+  text-align: center;
+}
+
+.mat-column-actions button {
+  width: 100%;
+}
+
+/* Paginator styles */
+mat-paginator {
+  margin-top: 16px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .field {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .wrap {
+    margin: 10px;
+    padding: 16px;
+  }
+  
+  .mat-column-time,
+  .mat-column-duration {
+    display: none;
+  }
+}

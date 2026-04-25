@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="page-title">Admin Dashboard</h2>
+
+  <div class="card-grid">
+    <mat-card class="nav-card">
+      <mat-icon>add_circle</mat-icon>
+      <h3>Create Election</h3>
+      <p>Create a new election with title, description, start time, and end time.</p>
+      <button mat-raised-button color="primary" routerLink="/admin/create-election">
+        Go to Create Election
+      </button>
+    </mat-card>
+
+    <mat-card class="nav-card">
+      <mat-icon>event_note</mat-icon>
+      <h3>Manage Elections</h3>
+      <p>View elections, close elections, and publish results.</p>
+      <button mat-raised-button color="accent" routerLink="/admin/manage-elections">
+        Go to Manage Elections
+      </button>
+    </mat-card>
+
+    <mat-card class="nav-card">
+      <mat-icon>receipt_long</mat-icon>
+      <h3>API Logs</h3>
+      <p>Review admin activity and API logs.</p>
+      <button mat-raised-button color="primary" routerLink="/admin/api-logs">
+        Go to API Logs
+      </button>
+    </mat-card>
+  </div>
+</div>

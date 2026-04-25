@@ -1,0 +1,160 @@
+.container {
+  padding: 24px;
+}
+
+.page-title {
+  margin: 0 0 18px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.global-msg {
+  margin-bottom: 14px;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+.success {
+  color: #166534;
+  font-weight: 500;
+}
+
+.section {
+  padding: 18px;
+  border-radius: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.loading-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.empty-state {
+  color: #64748b;
+  padding: 12px 0;
+}
+
+.verification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.verification-card {
+  padding: 16px;
+  border-radius: 14px;
+}
+
+.verification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.address {
+  margin-bottom: 14px;
+  color: #334155;
+}
+
+.notes-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.notes-box textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+  margin-bottom: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .verification-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+.id-image-section {
+  margin-bottom: 14px;
+}
+
+.id-image-preview {
+  width: 260px;
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid #cbd5e1;
+}
+
+.image-link {
+  margin-top: 6px;
+}
+
+.image-link a {
+  color: #2563eb;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.image-link a:hover {
+  text-decoration: underline;
+}

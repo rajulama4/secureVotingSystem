@@ -1,0 +1,30 @@
+.signup-card {
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.success-box {
+  margin-top: 20px;
+}
+
+.file-upload {
+  margin-bottom: 12px;
+}
+
+.file-name {
+  font-size: 13px;
+  margin-top: 5px;
+}

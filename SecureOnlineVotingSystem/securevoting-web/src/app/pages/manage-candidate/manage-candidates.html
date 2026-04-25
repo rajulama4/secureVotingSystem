@@ -1,0 +1,199 @@
+<div class="container">
+  <div class="top-bar">
+    <h2 class="page-title">Manage Candidates</h2>
+    <button mat-stroked-button routerLink="/admin">Back to Dashboard</button>
+  </div>
+
+  <div *ngIf="error" class="error global-msg">{{ error }}</div>
+  <div *ngIf="success" class="success global-msg">{{ success }}</div>
+
+  <mat-card class="section">
+    <div class="section-title">
+      <mat-icon>groups</mat-icon>
+      <span>Create Candidate</span>
+    </div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>Jurisdiction *</label>
+        <select
+          [(ngModel)]="jurisdictionId"
+          (ngModelChange)="applyElectionFilter()"
+          class="full-input"
+          [disabled]="loadingJurisdictions || jurisdictions.length === 0">
+          <option [ngValue]="null">
+            {{ loadingJurisdictions ? 'Loading jurisdictions...' : '-- Select jurisdiction --' }}
+          </option>
+          <option *ngFor="let j of jurisdictions" [ngValue]="j.jurisdictionId">
+            {{ j.name }} ({{ j.city }}, {{ j.county }})
+          </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Election *</label>
+        <select
+          [(ngModel)]="electionId"
+          (ngModelChange)="onElectionChange()"
+          class="full-input"
+          [disabled]="!jurisdictionId || filteredElections.length === 0">
+          <option [ngValue]="null">-- Select election --</option>
+          <option *ngFor="let e of filteredElections" [ngValue]="e.electionId">
+            {{ e.title }}
+          </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Candidate Name *</label>
+        <input
+          [(ngModel)]="candidateName"
+          class="full-input"
+          placeholder="Candidate name" />
+      </div>
+
+      <div class="field">
+        <label>Party</label>
+        <input
+          [(ngModel)]="party"
+          class="full-input"
+          placeholder="Party name" />
+      </div>
+
+      <div class="field full-span">
+        <label>Candidate Picture</label>
+        <input
+          type="file"
+          accept=".jpg,.jpeg,.png,.webp"
+          (change)="onCandidateFileSelected($event)" />
+        <div *ngIf="candidateFileError" class="error small-msg">
+          {{ candidateFileError }}
+        </div>
+      </div>
+
+      <div class="field full-span">
+        <label>Bio</label>
+        <textarea
+          [(ngModel)]="bio"
+          rows="4"
+          class="full-input"
+          placeholder="Candidate bio"></textarea>
+      </div>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width"
+      (click)="createCandidate()"
+      [disabled]="saving">
+      <span *ngIf="!saving">Create Candidate</span>
+      <span *ngIf="saving">Creating...</span>
+    </button>
+  </mat-card>
+
+  <mat-card class="section" *ngIf="editingCandidateId">
+    <div class="section-title">
+      <mat-icon>edit</mat-icon>
+      <span>Edit Candidate</span>
+    </div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>Candidate Name *</label>
+        <input [(ngModel)]="editCandidateName" class="full-input" />
+      </div>
+
+      <div class="field">
+        <label>Party</label>
+        <input [(ngModel)]="editParty" class="full-input" />
+      </div>
+
+      <div class="field full-span">
+        <label>Bio</label>
+        <textarea [(ngModel)]="editBio" rows="4" class="full-input"></textarea>
+      </div>
+
+      <div class="field full-span">
+        <label>Current Picture</label>
+        <div class="edit-image-wrap">
+          <img
+            *ngIf="currentEditImagePath"
+            [src]="getFullImageUrl(currentEditImagePath)"
+            class="candidate-edit-image"
+            alt="Current candidate image" />
+
+          <div *ngIf="!currentEditImagePath" class="candidate-avatar large-avatar">
+            {{ editCandidateName.charAt(0) || '?' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="field full-span">
+        <label>Replace Picture</label>
+        <input type="file" accept=".jpg,.jpeg,.png,.webp" (change)="onEditCandidateFileSelected($event)" />
+        <div *ngIf="editFileError" class="error small-msg">
+          {{ editFileError }}
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="updateCandidate()" [disabled]="updating">
+        <span *ngIf="!updating">Save Changes</span>
+        <span *ngIf="updating">Saving...</span>
+      </button>
+      <button mat-stroked-button type="button" (click)="cancelEditCandidate()">Cancel</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="section" *ngIf="electionId">
+    <div class="section-title">
+      <mat-icon>list</mat-icon>
+      <span>Candidates for Selected Election</span>
+    </div>
+
+    <div *ngIf="loading" class="loading-wrap">
+      Loading candidates...
+    </div>
+
+    <div *ngIf="!loading && candidates.length === 0" class="empty-state">
+      No candidates found for this election.
+    </div>
+
+    <div class="candidate-list" *ngIf="!loading && candidates.length > 0">
+      <div class="candidate-card" *ngFor="let c of candidates">
+        <div class="candidate-row">
+          <div class="candidate-avatar-wrap">
+            <img
+              *ngIf="c.candidateImagePath"
+              [src]="getFullImageUrl(c.candidateImagePath)"
+              (error)="c.candidateImagePath = null"
+              alt="Candidate image"
+              class="candidate-thumb" />
+
+            <div *ngIf="!c.candidateImagePath" class="candidate-avatar">
+              {{ c.candidateName?.charAt(0) || '?' }}
+            </div>
+          </div>
+
+          <div class="candidate-info">
+            <button class="candidate-link" type="button" (click)="startEditCandidate(c)">
+              {{ c.candidateName }}
+            </button>
+            <div>{{ c.party || '-' }}</div>
+            <div>{{ c.bio || '-' }}</div>
+            <div>Status: {{ c.isActive ? 'Active' : 'Inactive' }}</div>
+          </div>
+
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="deactivateCandidate(c.candidateId)">
+            Deactivate
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

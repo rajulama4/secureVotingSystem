@@ -9,5 +9,10 @@
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public bool IsClosed { get; set; }
+        public bool IsPublished { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public int? JurisdictionId { get; set; }
     }
 }

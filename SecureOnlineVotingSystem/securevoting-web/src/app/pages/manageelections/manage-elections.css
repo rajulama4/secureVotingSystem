@@ -1,0 +1,141 @@
+.container {
+  padding: 24px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding: 18px;
+  border-radius: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.election-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.election-table th,
+.election-table td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.election-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #334155;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-gray {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.badge-red {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-green {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.error {
+  margin-top: 12px;
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+.success {
+  margin-top: 12px;
+  color: #166534;
+  font-weight: 500;
+}
+
+.loading {
+  padding: 16px 0;
+  color: #475569;
+}
+
+
+/* Add to your manage-elections.css */
+.results-info {
+  padding: 10px 16px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Make sure the table container handles pagination well */
+.table-wrap {
+  overflow-x: auto;
+  background: white;
+  border-radius: 4px;
+}
+
+/* Style for the paginator */
+mat-paginator {
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+/* Optional: Add hover effect for table rows */
+.election-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Make action buttons consistent */
+.actions button {
+  margin: 0 4px;
+  min-width: 120px;
+}
+
+.actions button:first-child {
+  margin-left: 0;
+}

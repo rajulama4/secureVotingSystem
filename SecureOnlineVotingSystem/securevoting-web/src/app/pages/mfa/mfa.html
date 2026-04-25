@@ -1,0 +1,27 @@
+<div class="mfa-page">
+  <div class="mfa-card">
+    <h2>MFA Verification</h2>
+
+    <p class="subtitle">Enter the 6-digit code.</p>
+
+    <div *ngIf="simCode" class="dev-code">
+      <strong>Dev code:</strong> {{ simCode }}
+    </div>
+
+    <input
+      class="otp-input"
+      [(ngModel)]="code"
+      maxlength="6"
+      inputmode="numeric"
+      placeholder="••••••"
+    />
+
+    <button class="verify-btn" (click)="verify()" [disabled]="loading">
+      {{ loading ? 'Verifying...' : 'Verify' }}
+    </button>
+
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+  </div>
+</div>

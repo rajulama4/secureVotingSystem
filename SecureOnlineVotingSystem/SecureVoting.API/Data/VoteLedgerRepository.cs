@@ -66,5 +66,49 @@ namespace SecureVoting.API.Data
 
             return sha.ComputeHash(combined); // 32 bytes
         }
+
+
+        public List<(Guid receiptId, byte[] encryptedVote)> GetVotesForElection(int electionId)
+        {
+            var list = new List<(Guid, byte[])>();
+
+            using var conn = _db.GetConnection();
+            using var cmd = new SqlCommand(@"
+        SELECT ReceiptId, EncryptedVote
+        FROM VoteLedger
+        WHERE ElectionId = @ElectionId
+        ORDER BY LedgerId
+    ", conn);
+
+            cmd.Parameters.Add("@ElectionId", SqlDbType.Int).Value = electionId;
+
+            conn.Open();
+            using var r = cmd.ExecuteReader();
+
+            while (r.Read())
+            {
+                list.Add((
+                    r.GetGuid(0),
+                    (byte[])r[1]
+                ));
+            }
+
+            return list;
+        }
+
+        public byte[]? GetEncryptedVoteByReceipt(Guid receiptId)
+        {
+            using var conn = _db.GetConnection();
+            using var cmd = new SqlCommand(@"
+        SELECT EncryptedVote
+        FROM VoteLedger
+        WHERE ReceiptId = @ReceiptId
+    ", conn);
+
+            cmd.Parameters.Add("@ReceiptId", SqlDbType.UniqueIdentifier).Value = receiptId;
+
+            conn.Open();
+            return cmd.ExecuteScalar() as byte[];
+        }
     }
 }

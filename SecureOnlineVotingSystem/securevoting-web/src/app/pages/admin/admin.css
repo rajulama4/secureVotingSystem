@@ -1,37 +1,237 @@
-.container {
-  padding: 24px;
+.admin-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 28px 42px;
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(99,102,241,0.14), transparent 32%),
+    linear-gradient(135deg, #f8fafc 0%, #eef2ff 48%, #f1f5f9 100%);
 }
 
-.page-title {
-  margin: 0 0 20px;
-  font-size: 28px;
+.hero {
+  width: 100%;
+  min-height: 190px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 38px 44px;
+  border-radius: 28px;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,64,175,0.92)),
+    radial-gradient(circle at top right, rgba(255,255,255,0.24), transparent 30%);
+  box-shadow: 0 28px 70px rgba(15,23,42,0.22);
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bfdbfe;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.hero-text {
+  max-width: 760px;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.86);
+}
+
+.hero-badge {
+  width: 96px;
+  height: 96px;
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.13);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+}
+
+.hero-badge mat-icon {
+  font-size: 56px;
+  width: 56px;
+  height: 56px;
+}
+
+.stats-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(226,232,240,0.9);
+  box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+}
+
+.stat-card mat-icon {
+  color: #1d4ed8;
+  font-size: 34px;
+  width: 34px;
+  height: 34px;
+}
+
+.stat-card p {
+  margin: 0 0 5px;
+  color: #64748b;
+  font-size: 13px;
   font-weight: 700;
+}
+
+.stat-card h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 850;
+}
+
+.section-header {
+  margin: 6px 0 18px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 850;
   color: #0f172a;
 }
 
+.section-header p {
+  margin: 6px 0 0;
+  color: #64748b;
+}
+
 .card-grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: 22px;
 }
 
 .nav-card {
   padding: 24px;
-  border-radius: 16px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.94);
+  border: 1px solid rgba(226,232,240,0.92);
+  box-shadow: 0 18px 45px rgba(15,23,42,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.nav-card mat-icon {
-  font-size: 36px;
-  width: 36px;
-  height: 36px;
-  margin-bottom: 12px;
+.nav-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 26px 58px rgba(15,23,42,0.15);
+}
+
+.icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+
+.icon-wrap mat-icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.blue {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.purple {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+}
+
+.green {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.orange {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.red {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.teal {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
 }
 
 .nav-card h3 {
   margin: 0 0 10px;
+  font-size: 21px;
+  font-weight: 850;
+  color: #0f172a;
 }
 
 .nav-card p {
-  margin: 0 0 18px;
+  min-height: 72px;
+  margin: 0 0 22px;
   color: #475569;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.nav-card button {
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+@media (max-width: 1000px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-page {
+    padding: 18px;
+  }
+
+  .hero {
+    padding: 26px;
+  }
+
+  .hero-badge {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
 }

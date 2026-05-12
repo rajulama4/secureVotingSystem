@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-manage-candidates',
@@ -22,7 +24,9 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   templateUrl: './manage-candidates.html',
   styleUrls: ['./manage-candidates.css']
@@ -72,7 +76,7 @@ export class ManageCandidatesComponent implements OnInit {
     this.loadElections();
   }
 
-  loadJurisdictions() {
+  loadJurisdictions(): void {
     this.loadingJurisdictions = true;
     this.error = '';
     this.cdr.detectChanges();
@@ -92,7 +96,7 @@ export class ManageCandidatesComponent implements OnInit {
     });
   }
 
-  loadElections() {
+  loadElections(): void {
     this.error = '';
 
     this.electionsSvc.getAll().subscribe({
@@ -108,7 +112,7 @@ export class ManageCandidatesComponent implements OnInit {
     });
   }
 
-  applyElectionFilter() {
+  applyElectionFilter(): void {
     if (!this.jurisdictionId) {
       this.filteredElections = [];
       this.electionId = null;
@@ -130,7 +134,7 @@ export class ManageCandidatesComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  onElectionChange() {
+  onElectionChange(): void {
     this.cancelEditCandidate();
 
     if (!this.electionId) {
@@ -142,7 +146,7 @@ export class ManageCandidatesComponent implements OnInit {
     this.loadCandidates();
   }
 
-  loadCandidates() {
+  loadCandidates(): void {
     if (!this.electionId) {
       this.candidates = [];
       this.cdr.detectChanges();
@@ -168,7 +172,7 @@ export class ManageCandidatesComponent implements OnInit {
     });
   }
 
-  onCandidateFileSelected(event: Event) {
+  onCandidateFileSelected(event: Event): void {
     this.candidateFileError = '';
 
     const input = event.target as HTMLInputElement;
@@ -184,19 +188,22 @@ export class ManageCandidatesComponent implements OnInit {
     if (!allowedTypes.includes(file.type)) {
       this.selectedCandidateFile = null;
       this.candidateFileError = 'Only JPG, PNG, and WEBP files are allowed.';
+      this.cdr.detectChanges();
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
       this.selectedCandidateFile = null;
       this.candidateFileError = 'Max file size is 5MB.';
+      this.cdr.detectChanges();
       return;
     }
 
     this.selectedCandidateFile = file;
+    this.cdr.detectChanges();
   }
 
-  createCandidate() {
+  createCandidate(): void {
     this.error = '';
     this.success = '';
     this.candidateFileError = '';
@@ -263,7 +270,7 @@ export class ManageCandidatesComponent implements OnInit {
     });
   }
 
-  startEditCandidate(c: any) {
+  startEditCandidate(c: any): void {
     this.error = '';
     this.success = '';
 
@@ -278,7 +285,7 @@ export class ManageCandidatesComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  cancelEditCandidate() {
+  cancelEditCandidate(): void {
     this.editingCandidateId = null;
     this.editCandidateName = '';
     this.editParty = '';
@@ -290,7 +297,7 @@ export class ManageCandidatesComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  onEditCandidateFileSelected(event: Event) {
+  onEditCandidateFileSelected(event: Event): void {
     this.editFileError = '';
 
     const input = event.target as HTMLInputElement;
@@ -306,19 +313,22 @@ export class ManageCandidatesComponent implements OnInit {
     if (!allowedTypes.includes(file.type)) {
       this.editSelectedFile = null;
       this.editFileError = 'Only JPG, PNG, and WEBP files are allowed.';
+      this.cdr.detectChanges();
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
       this.editSelectedFile = null;
       this.editFileError = 'Max file size is 5MB.';
+      this.cdr.detectChanges();
       return;
     }
 
     this.editSelectedFile = file;
+    this.cdr.detectChanges();
   }
 
-  updateCandidate() {
+  updateCandidate(): void {
     this.error = '';
     this.success = '';
     this.editFileError = '';
@@ -369,7 +379,7 @@ export class ManageCandidatesComponent implements OnInit {
     });
   }
 
-  deactivateCandidate(candidateId: number) {
+  deactivateCandidate(candidateId: number): void {
     this.error = '';
     this.success = '';
 
@@ -395,7 +405,4 @@ export class ManageCandidatesComponent implements OnInit {
     if (path.startsWith('http')) return path;
     return this.apiBaseUrl + path;
   }
-
-
-  
 }

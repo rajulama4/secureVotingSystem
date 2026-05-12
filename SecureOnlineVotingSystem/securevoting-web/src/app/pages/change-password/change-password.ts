@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-change-password',
@@ -22,7 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule
   ],
   templateUrl: './change-password.html',
   styleUrl: './change-password.css'
@@ -34,7 +36,10 @@ export class ChangePasswordComponent {
   success = '';
   loading = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   submit() {
     this.error = '';
@@ -64,6 +69,7 @@ export class ChangePasswordComponent {
       .subscribe({
         next: (res) => {
           this.success = res?.message || 'Password changed successfully.';
+
           sessionStorage.removeItem('pw_change_userId');
           sessionStorage.removeItem('pw_change_email');
 

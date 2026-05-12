@@ -2,13 +2,18 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
+import { RouterModule } from '@angular/router';
+
 import { VoterVerificationService } from '../../../services/voter-verification';
+import { environment } from '../../../../environments/environment';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { environment } from '../../../../environments/environment';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 type VerificationRow = {
   verificationId: number;
@@ -50,10 +55,14 @@ type JurisdictionRow = {
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   templateUrl: './verification.html',
   styleUrl: './verification.css'
@@ -79,7 +88,7 @@ export class VerificationComponent {
     this.loadPending();
   }
 
-  loadPending() {
+  loadPending(): void {
     this.loading = true;
     this.error = '';
     this.success = '';
@@ -93,7 +102,6 @@ export class VerificationComponent {
       )
       .subscribe({
         next: (data: any) => {
-          console.log('PENDING RESPONSE:', data);
           this.rows = Array.isArray(data) ? data : [];
 
           for (const row of this.rows) {
@@ -110,10 +118,9 @@ export class VerificationComponent {
       });
   }
 
-  loadJurisdictions() {
+  loadJurisdictions(): void {
     this.verificationSvc.getJurisdictions().subscribe({
       next: (data: any) => {
-        console.log('JURISDICTIONS RESPONSE:', data);
         this.jurisdictions = Array.isArray(data) ? data : [];
         this.cdr.detectChanges();
       },
@@ -125,34 +132,40 @@ export class VerificationComponent {
     });
   }
 
-  approve(row: VerificationRow) {
-  const jurisdictionId = this.jurisdictionByUserId[row.userId];
+  approve(row: VerificationRow): void {
+    this.error = '';
+    this.success = '';
 
-  if (!jurisdictionId) {
-    this.error = 'Please select jurisdiction before approving.';
-    return;
-  }
+    const jurisdictionId = this.jurisdictionByUserId[row.userId];
 
-  const notes = this.notesByUserId[row.userId] || '';
+    if (!jurisdictionId) {
+      this.error = 'Please select jurisdiction before approving.';
+      this.cdr.detectChanges();
+      return;
+    }
 
-  this.verificationSvc
-    .approve(row.userId, notes, jurisdictionId)
-    .subscribe({
-      next: (res) => {
-        this.success = res.message;
+    const notes = this.notesByUserId[row.userId]?.trim() || '';
+
+    this.verificationSvc.approve(row.userId, notes, jurisdictionId).subscribe({
+      next: (res: any) => {
+        this.success = res?.message ?? 'Voter verification approved.';
+        delete this.notesByUserId[row.userId];
+        delete this.jurisdictionByUserId[row.userId];
         this.loadPending();
       },
       error: (err) => {
-        this.error = err?.error?.message || 'Approval failed';
+        this.error = err?.error?.message ?? 'Approval failed.';
+        this.cdr.detectChanges();
       }
     });
-}
+  }
 
-  reject(row: VerificationRow) {
+  reject(row: VerificationRow): void {
     this.error = '';
     this.success = '';
 
     const notes = this.notesByUserId[row.userId]?.trim() || '';
+
     if (!notes) {
       this.error = 'Reviewer notes are required for rejection.';
       this.cdr.detectChanges();

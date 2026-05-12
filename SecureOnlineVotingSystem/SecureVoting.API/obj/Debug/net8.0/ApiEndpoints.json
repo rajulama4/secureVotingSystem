@@ -111,6 +111,16 @@
   },
   {
     "ContainingType": "SecureVoting.API.Controllers.AuthController",
+    "Method": "Logout",
+    "RelativePath": "api/Auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecureVoting.API.Controllers.AuthController",
     "Method": "Register",
     "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",
@@ -486,6 +496,46 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecureVotingSystem.Controllers.ReportsController",
+    "Method": "GetCandidatePerformance",
+    "RelativePath": "api/Reports/candidate-performance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecureVotingSystem.Controllers.ReportsController",
+    "Method": "GetElectionTurnout",
+    "RelativePath": "api/Reports/election-turnout",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecureVotingSystem.Controllers.ReportsController",
+    "Method": "GetOverview",
+    "RelativePath": "api/Reports/overview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecureVotingSystem.Controllers.ReportsController",
+    "Method": "GetVotersByVerificationStatus",
+    "RelativePath": "api/Reports/voters-by-verification-status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

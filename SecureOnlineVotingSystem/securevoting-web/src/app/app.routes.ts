@@ -19,6 +19,8 @@ import { ManageCandidatesComponent } from './pages/manage-candidate/manage-candi
 import { VoteCountStatusComponent } from './pages/vote-count-status/vote-count-status';
 import { VoteCountDetailComponent } from './pages/vote-count-detail/vote-count-detail';
 
+import { ReportsComponent } from './pages/reports/reports';
+
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
@@ -26,6 +28,7 @@ export const routes: Routes = [
    { path: 'signup', component: SignupComponent },
   { path: 'totp', component: TotpComponent },
   { path: 'change-password', component: ChangePasswordComponent },
+  
 
   {
     path: '',
@@ -41,6 +44,7 @@ export const routes: Routes = [
       { path: 'admin/verification', component: VerificationComponent, canActivate: [adminGuard] },
       { path: 'admin/vote-count-status', component: VoteCountStatusComponent, canActivate: [adminGuard] },
       { path: 'admin/vote-count-status/:electionId', component: VoteCountDetailComponent, canActivate: [adminGuard] },
+      { path: 'admin/reports', component: ReportsComponent, canActivate: [adminGuard] },
       
     ]
   },

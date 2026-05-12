@@ -16,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -30,6 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatFormFieldModule,
     MatDatepickerModule,
+    MatIconModule,
     MatNativeDateModule
 
   ],

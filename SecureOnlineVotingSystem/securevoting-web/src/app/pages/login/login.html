@@ -1,47 +1,69 @@
-<mat-card class="login-card">
-
-  <h2>Login</h2>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Email or User ID</mat-label>
-    <input
-      matInput
-      [(ngModel)]="loginId"
-      required
-      autocomplete="username" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Password</mat-label>
-    <input
-      matInput
-      type="password"
-      [(ngModel)]="password"
-      required
-      autocomplete="current-password" />
-  </mat-form-field>
-
-  <button
-    mat-raised-button
-    color="primary"
-    class="full-width"
-    (click)="submit()"
-    [disabled]="loading">
-    <span *ngIf="!loading">Login</span>
-    <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
-  </button>
-
-  <button
-    mat-stroked-button
-    color="primary"
-    class="full-width signup-btn"
-    routerLink="/signup"
-    [disabled]="loading">
-    Sign Up as Voter
-  </button>
-
-  <div class="error" *ngIf="error">
-    {{ error }}
+<div class="login-page">
+  <div class="login-left">
+    <div class="brand-box">
+      <mat-icon class="brand-icon">how_to_vote</mat-icon>
+      <h1>Secure Online Voting</h1>
+      <p>
+        A trusted digital voting platform with voter verification,
+        two-factor authentication, and secure vote casting.
+      </p>
+    </div>
   </div>
 
-</mat-card>
+  <mat-card class="login-card">
+    <div class="card-header">
+      <mat-icon class="lock-icon">lock</mat-icon>
+      <h2>Welcome Back</h2>
+      <p>Sign in using your email or voter user ID</p>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email or User ID</mat-label>
+      <input
+        matInput
+        [(ngModel)]="loginId"
+        required
+        autocomplete="username" />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="password"
+        required
+        autocomplete="current-password" />
+      <mat-icon matSuffix>vpn_key</mat-icon>
+    </mat-form-field>
+
+    <div class="error" *ngIf="error">
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ error }}</span>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width login-btn"
+      (click)="submit()"
+      [disabled]="loading">
+      <span *ngIf="!loading">Login Securely</span>
+
+      <span *ngIf="loading" class="loading-content">
+        <mat-spinner diameter="18"></mat-spinner>
+        Signing in...
+      </span>
+    </button>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      class="full-width signup-btn"
+      routerLink="/signup"
+      [disabled]="loading">
+      Sign Up as Voter
+    </button>
+  </mat-card>
+</div>

@@ -1,59 +1,81 @@
-<div class="page">
-  <div class="card">
-    <h2 class="title">Two-Factor Authentication</h2>
-
-    <p class="subtitle" *ngIf="isEnrollMode; else verifyOnly">
-      {{ enrollMessage }}
+<div class="totp-page">
+  <div class="totp-left">
+    <mat-icon class="brand-icon">security</mat-icon>
+    <h1>Two-Factor Security</h1>
+    <p>
+      Your account is protected with an authenticator code before accessing the secure voting portal.
     </p>
+  </div>
 
-    <ng-template #verifyOnly>
-      <p class="subtitle">
-        Enter the 6-digit code from your authenticator app.
+  <mat-card class="totp-card">
+    <div class="card-header">
+      <mat-icon class="lock-icon">verified_user</mat-icon>
+      <h2>Two-Factor Authentication</h2>
+
+      <p *ngIf="isEnrollMode; else verifyOnly">
+        {{ enrollMessage }}
       </p>
-    </ng-template>
 
-    <!-- QR shown only during enrollment -->
-    <div class="qrWrap" *ngIf="qrBase64">
+      <ng-template #verifyOnly>
+        <p>Enter the 6-digit code from your authenticator app.</p>
+      </ng-template>
+    </div>
+
+    <div class="qr-wrap" *ngIf="qrBase64">
       <img
         class="qr"
         [src]="'data:image/png;base64,' + qrBase64"
-        alt="TOTP QR Code"
-      />
+        alt="TOTP QR Code" />
+
       <div class="hint" *ngIf="otpauthUri">
-        If scan fails, try a different authenticator app or enlarge the QR.
+        Scan this QR code using Google Authenticator, Microsoft Authenticator, or Authy.
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Email</label>
-      <input class="input" [value]="email" readonly />
-    </div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [value]="email" readonly />
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
 
-    <div class="field">
-      <label class="label">6-digit code</label>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>6-digit code</mat-label>
       <input
-        class="input code"
+        matInput
+        class="code-input"
         [(ngModel)]="code"
         maxlength="6"
         inputmode="numeric"
-        placeholder="123456"
-      />
+        placeholder="123456" />
+      <mat-icon matSuffix>pin</mat-icon>
+    </mat-form-field>
+
+    <div class="error" *ngIf="error">
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ error }}</span>
     </div>
 
-    <button class="btn" (click)="verify()" [disabled]="loading">
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width verify-btn"
+      (click)="verify()"
+      [disabled]="loading">
       <span *ngIf="!loading">Verify & Continue</span>
-      <span *ngIf="loading">Verifying…</span>
+
+      <span *ngIf="loading" class="loading-content">
+        <mat-spinner diameter="18"></mat-spinner>
+        Verifying...
+      </span>
     </button>
 
-    <div class="error" *ngIf="error">{{ error }}</div>
-
-    <div class="footer">
-      <button
-        class="link"
-        type="button"
-        routerLink="/login">
-        Back to Login
-      </button>
-    </div>
-  </div>
+    <button
+      mat-stroked-button
+      color="primary"
+      class="full-width back-btn"
+      routerLink="/login"
+      [disabled]="loading">
+      Back to Login
+    </button>
+  </mat-card>
 </div>

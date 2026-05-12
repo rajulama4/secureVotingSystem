@@ -53,6 +53,11 @@ login(loginId: string, password: string) {
     userId,
     newPassword
   });
-}    
+}
+
+
+logout() {
+  return this.http.post<any>(`${this.base}/api/auth/logout`, {});
+}
 
 }

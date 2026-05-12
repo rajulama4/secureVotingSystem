@@ -1,31 +1,123 @@
-<div class="container">
-  <h2 class="page-title">Admin Dashboard</h2>
+<div class="admin-page">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Secure Voting Admin Portal</p>
+      <h1>Admin Dashboard</h1>
+      <p class="hero-text">
+        Manage elections, voter verification, audit logs, reports, and voting activity from one secure control center.
+      </p>
+    </div>
+
+    <div class="hero-badge">
+      <mat-icon>admin_panel_settings</mat-icon>
+    </div>
+  </section>
+
+  <section class="stats-grid">
+    <mat-card class="stat-card">
+      <mat-icon>how_to_vote</mat-icon>
+      <div>
+        <p>Total Elections</p>
+        <h3>19</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-icon>verified_user</mat-icon>
+      <div>
+        <p>Pending Verifications</p>
+        <h3>Review</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-icon>security</mat-icon>
+      <div>
+        <p>Security</p>
+        <h3>Active</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-icon>receipt_long</mat-icon>
+      <div>
+        <p>Audit Logs</p>
+        <h3>Enabled</h3>
+      </div>
+    </mat-card>
+  </section>
+
+  <section class="section-header">
+    <div>
+      <h2>Admin Actions</h2>
+      <p>Choose a module to manage your voting system.</p>
+    </div>
+  </section>
 
   <div class="card-grid">
     <mat-card class="nav-card">
-      <mat-icon>add_circle</mat-icon>
+      <div class="icon-wrap blue">
+        <mat-icon>add_circle</mat-icon>
+      </div>
       <h3>Create Election</h3>
-      <p>Create a new election with title, description, start time, and end time.</p>
+      <p>Create a new election with title, description, schedule, and jurisdiction.</p>
       <button mat-raised-button color="primary" routerLink="/admin/create-election">
-        Go to Create Election
+        Create Election
       </button>
     </mat-card>
 
     <mat-card class="nav-card">
-      <mat-icon>event_note</mat-icon>
+      <div class="icon-wrap purple">
+        <mat-icon>event_note</mat-icon>
+      </div>
       <h3>Manage Elections</h3>
-      <p>View elections, close elections, and publish results.</p>
-      <button mat-raised-button color="accent" routerLink="/admin/manage-elections">
-        Go to Manage Elections
+      <p>View, close, publish results, and manage the complete election lifecycle.</p>
+      <button mat-raised-button color="primary" routerLink="/admin/manage-elections">
+        Manage Elections
       </button>
     </mat-card>
 
     <mat-card class="nav-card">
-      <mat-icon>receipt_long</mat-icon>
+      <div class="icon-wrap green">
+        <mat-icon>verified_user</mat-icon>
+      </div>
+      <h3>Voter Verification</h3>
+      <p>Review pending voter registrations and approve or reject eligibility.</p>
+      <button mat-raised-button color="primary" routerLink="/admin/verification">
+        Review Voters
+      </button>
+    </mat-card>
+
+    <mat-card class="nav-card">
+      <div class="icon-wrap orange">
+        <mat-icon>groups</mat-icon>
+      </div>
+      <h3>Manage Candidates</h3>
+      <p>Add, update, or deactivate candidates linked to specific elections.</p>
+      <button mat-raised-button color="primary" routerLink="/admin/candidates">
+        Manage Candidates
+      </button>
+    </mat-card>
+
+    <mat-card class="nav-card">
+      <div class="icon-wrap red">
+        <mat-icon>receipt_long</mat-icon>
+      </div>
       <h3>API Logs</h3>
-      <p>Review admin activity and API logs.</p>
+      <p>Monitor authentication, verification, voting, and admin activity logs.</p>
       <button mat-raised-button color="primary" routerLink="/admin/api-logs">
-        Go to API Logs
+        View Logs
+      </button>
+    </mat-card>
+
+    <mat-card class="nav-card">
+      <div class="icon-wrap teal">
+        <mat-icon>analytics</mat-icon>
+      </div>
+      <h3>Reports</h3>
+      <p>View voter totals, verification status, turnout, and candidate reports.</p>
+      <button mat-raised-button color="primary" routerLink="/admin/reports">
+        View Reports
       </button>
     </mat-card>
   </div>

@@ -1,102 +1,180 @@
-<div class="container">
-  <h2 class="page-title">Voter Verification Review</h2>
+<div class="verification-page">
+  <div class="top-bar">
+    <div>
+      <p class="eyebrow">Admin Review</p>
+      <h2 class="page-title">Voter Verification Review</h2>
+      <p class="page-subtitle">
+        Review voter identity documents, assign jurisdiction, and approve or reject requests.
+      </p>
+    </div>
 
-  <div *ngIf="error" class="error global-msg">{{ error }}</div>
-  <div *ngIf="success" class="success global-msg">{{ success }}</div>
+    <button mat-stroked-button routerLink="/admin" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Dashboard
+    </button>
+  </div>
+
+  <div *ngIf="error" class="global-msg error">
+    <mat-icon>error_outline</mat-icon>
+    <span>{{ error }}</span>
+  </div>
+
+  <div *ngIf="success" class="global-msg success">
+    <mat-icon>check_circle</mat-icon>
+    <span>{{ success }}</span>
+  </div>
 
   <mat-card class="section">
     <div class="section-title">
-      <mat-icon>fact_check</mat-icon>
-      <span>Pending Verification Requests</span>
+      <div class="icon-wrap">
+        <mat-icon>fact_check</mat-icon>
+      </div>
+      <div>
+        <h3>Pending Verification Requests</h3>
+        <p>Only pending voter verification submissions are shown here.</p>
+      </div>
     </div>
 
     <div *ngIf="loading" class="loading-wrap">
-      <mat-spinner diameter="36"></mat-spinner>
+      <mat-spinner diameter="38"></mat-spinner>
+      <span>Loading verification requests...</span>
     </div>
 
     <div *ngIf="!loading && rows.length === 0" class="empty-state">
-      No pending verification requests.
+      <mat-icon>task_alt</mat-icon>
+      <h3>No pending requests</h3>
+      <p>All voter verification requests have been reviewed.</p>
     </div>
 
     <div class="verification-list" *ngIf="!loading && rows.length > 0">
       <mat-card class="verification-card" *ngFor="let row of rows">
+        <div class="card-header">
+          <div class="person-block">
+            <div class="avatar">
+              {{ row.legalFullName.charAt(0) || '?' }}
+            </div>
 
-        <!-- HEADER -->
-        <div class="verification-header">
-          <div>
-            <div class="name">{{ row.legalFullName }}</div>
-            <div class="sub">
-              User ID: {{ row.userId }} |
-              Submitted: {{ row.submittedAtUtc | date:'medium' }}
+            <div>
+              <h3>{{ row.legalFullName }}</h3>
+              <p>
+                User ID: {{ row.userId }} • Submitted:
+                {{ row.submittedAtUtc | date:'medium' }}
+              </p>
             </div>
           </div>
-          <div class="status">{{ row.verificationStatus }}</div>
+
+          <span class="status-pill">
+            {{ row.verificationStatus }}
+          </span>
         </div>
 
-        <!-- DETAILS -->
-        <div class="grid">
-          <div><strong>DOB:</strong> {{ row.dateOfBirth || '-' }}</div>
-          <div><strong>City:</strong> {{ row.city }}</div>
-          <div><strong>State:</strong> {{ row.stateCode }}</div>
-          <div><strong>Zip:</strong> {{ row.zipCode }}</div>
-          <div><strong>Document Type:</strong> {{ row.idDocumentType }}</div>
-          <div><strong>Masked ID:</strong> {{ row.idDocumentNumberMasked || '-' }}</div>
-          <div><strong>ID State:</strong> {{ row.idDocumentState || '-' }}</div>
-        </div>
+        <div class="content-grid">
+          <div class="info-panel">
+            <h4>Voter Information</h4>
 
-        <!-- ✅ JURISDICTION DROPDOWN (FIXED) -->
-        <div class="jurisdiction-section">
-          <label><strong>Assign Jurisdiction</strong></label>
+            <div class="info-grid">
+              <div class="info-item">
+                <span>DOB</span>
+                <strong>{{ row.dateOfBirth || '-' }}</strong>
+              </div>
 
-          <select [(ngModel)]="jurisdictionByUserId[row.userId]">
-            <option [ngValue]="null">-- Select jurisdiction --</option>
+              <div class="info-item">
+                <span>City</span>
+                <strong>{{ row.city }}</strong>
+              </div>
 
-            <option *ngFor="let j of jurisdictions" [ngValue]="j.jurisdictionId">
-              {{ j.jurisdictionName }} ({{ j.city }}, {{ j.county }})
-            </option>
-          </select>
-        </div>
+              <div class="info-item">
+                <span>State</span>
+                <strong>{{ row.stateCode }}</strong>
+              </div>
 
-        <!-- ADDRESS -->
-        <div class="address">
-          <strong>Address:</strong>
-          {{ row.addressLine1 }}
-          <span *ngIf="row.addressLine2">, {{ row.addressLine2 }}</span>,
-          {{ row.city }}, {{ row.stateCode }} {{ row.zipCode }}
-        </div>
+              <div class="info-item">
+                <span>Zip</span>
+                <strong>{{ row.zipCode }}</strong>
+              </div>
 
-        <!-- IMAGE -->
-        <div class="id-image-section" *ngIf="row.idPicturePath">
-          <div class="label"><strong>Uploaded ID:</strong></div>
+              <div class="info-item">
+                <span>Document Type</span>
+                <strong>{{ row.idDocumentType }}</strong>
+              </div>
 
-          <img
-            [src]="getFullImageUrl(row.idPicturePath)"
-            alt="ID Document"
-            class="id-image-preview" />
+              <div class="info-item">
+                <span>Masked ID</span>
+                <strong>{{ row.idDocumentNumberMasked || '-' }}</strong>
+              </div>
 
-          <div class="image-link">
-            <a [href]="getFullImageUrl(row.idPicturePath)" target="_blank">
-              View Full Image
-            </a>
+              <div class="info-item">
+                <span>ID State</span>
+                <strong>{{ row.idDocumentState || '-' }}</strong>
+              </div>
+            </div>
+
+            <div class="address-box">
+              <span>Address</span>
+              <strong>
+                {{ row.addressLine1 }}
+                <span *ngIf="row.addressLine2">, {{ row.addressLine2 }}</span>,
+                {{ row.city }}, {{ row.stateCode }} {{ row.zipCode }}
+              </strong>
+            </div>
+          </div>
+
+          <div class="document-panel">
+            <h4>Uploaded ID</h4>
+
+            <ng-container *ngIf="row.idPicturePath; else noImage">
+              <img
+                [src]="getFullImageUrl(row.idPicturePath)"
+                alt="ID Document"
+                class="id-image-preview" />
+
+              <a
+                [href]="getFullImageUrl(row.idPicturePath)"
+                target="_blank"
+                class="image-link">
+                View Full Image
+              </a>
+            </ng-container>
+
+            <ng-template #noImage>
+              <div class="no-image">
+                <mat-icon>image_not_supported</mat-icon>
+                <span>No ID image uploaded</span>
+              </div>
+            </ng-template>
           </div>
         </div>
 
-        <!-- NOTES -->
-        <div class="notes-box">
-          <label>Reviewer Notes</label>
-          <textarea
-            [(ngModel)]="notesByUserId[row.userId]"
-            rows="3"
-            placeholder="Add review notes here..."></textarea>
+        <div class="review-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Assign Jurisdiction</mat-label>
+            <mat-select [(ngModel)]="jurisdictionByUserId[row.userId]">
+              <mat-option [value]="null">-- Select jurisdiction --</mat-option>
+
+              <mat-option *ngFor="let j of jurisdictions" [value]="j.jurisdictionId">
+                {{ j.jurisdictionName }} ({{ j.city }}, {{ j.county }})
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>location_city</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Reviewer Notes</mat-label>
+            <textarea
+              matInput
+              [(ngModel)]="notesByUserId[row.userId]"
+              rows="3"
+              placeholder="Add review notes here..."></textarea>
+          </mat-form-field>
         </div>
 
-        <!-- ACTIONS -->
         <div class="actions">
           <button
             mat-raised-button
             color="primary"
             (click)="approve(row)"
             [disabled]="!jurisdictionByUserId[row.userId]">
+            <mat-icon>check_circle</mat-icon>
             Approve
           </button>
 
@@ -104,10 +182,10 @@
             mat-stroked-button
             color="warn"
             (click)="reject(row)">
+            <mat-icon>cancel</mat-icon>
             Reject
           </button>
         </div>
-
       </mat-card>
     </div>
   </mat-card>

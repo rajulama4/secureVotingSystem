@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using SecureVoting.API.Data;
+using SecureVoting.API.Middleware;
 using SecureVoting.API.Services;
+using SecureVotingSystem.Data;
+using SecureVotingSystem.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -64,6 +67,9 @@ builder.Services.AddScoped<VoterVerificationRepository>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<JurisdictionRepository>();
 builder.Services.AddScoped<CandidateRepository>();
+builder.Services.AddScoped<ReportsRepository>();
+builder.Services.AddScoped<ReportsService>();
+builder.Services.AddScoped<UserSessionRepository>();
 
 var app = builder.Build();
 
@@ -79,6 +85,7 @@ app.UseCors("AllowAllClients");
 app.UseStaticFiles();
 
 app.UseAuthentication();
+app.UseMiddleware<SessionValidationMiddleware>();
 app.UseAuthorization();
 
 app.UseMiddleware<SecureVoting.API.Middleware.ApiLoggingMiddleware>();

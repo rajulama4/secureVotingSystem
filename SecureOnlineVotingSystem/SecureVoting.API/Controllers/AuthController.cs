@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SecureVoting.API.Data;
 using SecureVoting.API.Models;
 using SecureVoting.API.Services;
+using System.Security.Claims;
 
 namespace SecureVoting.API.Controllers
 {
@@ -111,8 +112,28 @@ namespace SecureVoting.API.Controllers
                 return Unauthorized(new { message = "INVALID_TOTP" });
 
             // 4) Issue token
-            var token = _auth.GenerateJwt(user.UserId);
-            return Ok(new { message = "Login successful.", token });
+
+
+            try
+            {
+                var deviceInfo = Request.Headers.UserAgent.ToString();
+                var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+
+                var token = _auth.GenerateJwt(user.UserId, deviceInfo, ipAddress);
+
+                return Ok(new
+                {
+                    message = "Login successful.",
+                    token
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new
+                {
+                    message = ex.Message
+                });
+            }
         }
 
 
@@ -182,6 +203,25 @@ namespace SecureVoting.API.Controllers
 
             var (ok, msg) = _auth.ChangeTemporaryPassword(req.UserId, req.NewPassword);
             return ok ? Ok(new { message = msg }) : BadRequest(new { message = msg });
+        }
+
+
+        [Authorize]
+        [HttpPost("logout")]
+        public IActionResult Logout([FromServices] UserSessionRepository sessions)
+        {
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var sessionIdValue = User.FindFirstValue("sessionId");
+
+            if (string.IsNullOrWhiteSpace(userIdValue) || string.IsNullOrWhiteSpace(sessionIdValue))
+                return BadRequest(new { message = "Invalid session." });
+
+            int userId = int.Parse(userIdValue);
+            Guid sessionId = Guid.Parse(sessionIdValue);
+
+            sessions.DeactivateSession(userId, sessionId);
+
+            return Ok(new { message = "Logged out successfully." });
         }
 
     }

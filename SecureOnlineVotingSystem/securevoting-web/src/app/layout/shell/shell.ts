@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TokenService } from '../../services/token';
+import { AuthService } from '../../services/auth';
 
 // Material
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,8 +31,12 @@ import { MatListModule } from '@angular/material/list';
 export class ShellComponent {
   role: 'Admin' | 'Voter' | null = null;
 
-  constructor(private tokenSvc: TokenService, private router: Router) {
-    const token = this.tokenSvc.getToken(); // make sure TokenService has getToken()
+  constructor(
+    private tokenSvc: TokenService,
+    private router: Router,
+    private auth: AuthService
+  ) {
+    const token = this.tokenSvc.getToken();
     this.role = token ? (this.tokenSvc.getRole(token) as any) : null;
   }
 
@@ -44,7 +49,17 @@ export class ShellComponent {
   }
 
   logout() {
-    this.tokenSvc.clear();
-    this.router.navigate(['/login']);
+    this.auth.logout().subscribe({
+      next: () => {
+        this.tokenSvc.clear();
+        sessionStorage.clear();
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.tokenSvc.clear();
+        sessionStorage.clear();
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

@@ -14,13 +14,15 @@ namespace SecureVoting.API.Services
         private readonly CryptoService _crypto;
         private readonly IConfiguration _config;
         private readonly IFileStorageService _fileStorage;
-        public AuthService(UserRepository users, MfaRepository mfa, CryptoService crypto, IConfiguration config, IFileStorageService fileStorage)
+        private readonly UserSessionRepository _sessions;
+        public AuthService(UserRepository users, MfaRepository mfa, CryptoService crypto, IConfiguration config, IFileStorageService fileStorage, UserSessionRepository sessions)
         {
             _users = users;
             _mfa = mfa;
             _crypto = crypto;
             _config = config;
             _fileStorage = fileStorage;
+            _sessions = sessions;
         }
 
         public (bool ok, string message) Register(string fullName, string email, string password, string role)
@@ -65,30 +67,64 @@ namespace SecureVoting.API.Services
 
             if (!valid) return (false, "Invalid or expired MFA code.", null);
 
-            return (true, "Login successful.", GenerateJwt(userId));
+            try
+            {
+                var token = GenerateJwt(userId);
+
+                return (true, "Login successful.", token);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return (false, ex.Message, null);
+            }
         }
 
-        public string GenerateJwt(int userId)
-        {
+        public string GenerateJwt(
+                    int userId,
+                    string? deviceInfo = null,
+                    string? ipAddress = null)
+            {
             var user = GetUserByIdOrThrow(userId);
 
             var jwt = _config.GetSection("Jwt");
+            int expiresMinutes = int.Parse(jwt["ExpiresMinutes"]!);
+
+            var expiresAtUtc = DateTime.UtcNow.AddMinutes(expiresMinutes);
+
+            if (_sessions.HasActiveSession(user.UserId))
+            {
+                throw new InvalidOperationException(
+                    "This account is already logged in from another device."
+                );
+            }
+
+            Guid sessionId = Guid.NewGuid();
+
+            _sessions.CreateSession(
+                sessionId,
+                user.UserId,
+                expiresAtUtc,
+                deviceInfo,
+                ipAddress
+            );
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role),
-                new Claim("fullName", user.FullName)
-            };
+    {
+        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+        new Claim(ClaimTypes.Email, user.Email),
+        new Claim(ClaimTypes.Role, user.Role),
+        new Claim("fullName", user.FullName),
+        new Claim("sessionId", sessionId.ToString())
+    };
 
             var token = new JwtSecurityToken(
                 issuer: jwt["Issuer"],
                 audience: jwt["Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(int.Parse(jwt["ExpiresMinutes"]!)),
+                expires: expiresAtUtc,
                 signingCredentials: creds
             );
 

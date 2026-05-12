@@ -1,30 +1,262 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.signup-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 28px;
+  padding: 48px;
+  background:
+    linear-gradient(135deg, rgba(5, 23, 46, 0.94), rgba(30, 64, 175, 0.82)),
+    radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 30%),
+    linear-gradient(135deg, #0f172a, #1d4ed8);
+}
+
+.signup-left {
+  color: white;
+  padding: 40px;
+}
+
+.brand-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+}
+
+.signup-left h1 {
+  font-size: 46px;
+  line-height: 1.1;
+  margin: 0 0 18px;
+  font-weight: 800;
+}
+
+.signup-left p {
+  max-width: 540px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.86);
+}
+
 .signup-card {
-  max-width: 500px;
-  margin: 40px auto;
+  width: 100%;
+  max-width: 760px;
+  justify-self: center;
+  padding: 30px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.32);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.header-icon {
+  font-size: 42px;
+  width: 42px;
+  height: 42px;
+  color: #1e40af;
+  margin-bottom: 8px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.card-header p {
+  margin: 8px 0 0;
+  color: #64748b;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 10px;
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+.register-btn,
+.login-btn {
+  height: 46px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.login-btn {
+  margin-top: -4px;
+}
+
+.loading-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.error,
+.success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-size: 14px;
 }
 
 .error {
-  color: red;
+  background: #fee2e2;
+  color: #991b1b;
 }
 
 .success {
-  color: green;
+  background: #dcfce7;
+  color: #166534;
 }
 
-.success-box {
-  margin-top: 20px;
+.error mat-icon,
+.success mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .file-upload {
+  border: 1px dashed #94a3b8;
+  border-radius: 14px;
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.file-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
   margin-bottom: 12px;
 }
 
-.file-name {
+.file-header mat-icon {
+  color: #1e40af;
+}
+
+.file-header label {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.file-header label span {
+  color: #dc2626;
+}
+
+.file-header p {
+  margin: 4px 0 0;
+  color: #64748b;
   font-size: 13px;
-  margin-top: 5px;
+}
+
+.file-name {
+  margin-top: 10px;
+  color: #166534;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.small-error {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.success-box {
+  text-align: center;
+  padding: 18px 0 4px;
+}
+
+.success-big {
+  font-size: 54px;
+  width: 54px;
+  height: 54px;
+  color: #16a34a;
+}
+
+.success-box h3 {
+  margin: 10px 0 8px;
+  font-size: 26px;
+  color: #0f172a;
+}
+
+.success-box p {
+  color: #64748b;
+}
+
+.credential-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.credential-box div {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.credential-box span {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.credential-box strong {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .signup-page {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .signup-left {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .signup-left h1 {
+    font-size: 34px;
+  }
+
+  .signup-left p {
+    font-size: 15px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wide {
+    grid-column: span 1;
+  }
+
+  .credential-box {
+    grid-template-columns: 1fr;
+  }
 }
